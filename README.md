@@ -29,6 +29,6 @@ Read the docstrings in obo.py, or ``python reasoner.py -h`` for more
 information. It's pretty basic and has been tested with OBO format 1.2
 files from the Gene Ontology and Human Disease Ontology.
 
-Author
+Contact
 ---------
-erikclarke@gmail.com
+@pleiotrope (twitter)
