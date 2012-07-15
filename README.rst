@@ -8,7 +8,8 @@ obo.py has no external dependencies, so installation is trivial.
 
 Usage
 ----------
-In scripts:: 
+In scripts:
+```python
     from obo import Obo
     import urllib
     f = urllib.urlopen('http://geneontology.org/GO_slims/goslim_generic.obo')
@@ -19,10 +20,11 @@ In scripts::
 
     # Find all children of the Biological Process term
     print o.find_children('GO:0008150', expand=True)
-
-From the command line::
+```
+From the command line:
+```bash
     $ python reasoner.py --remote_obo 'http://geneontology.org/GO_slims/goslim_generic.obo' GO:0008150
-
+```
 Read the docstrings in obo.py, or ``python reasoner.py -h`` for more 
 information. It's pretty basic and has been tested with OBO format 1.2
 files from the Gene Ontology and Human Disease Ontology.
