@@ -5,6 +5,7 @@ obo.py
 Installation
 ----------
 obo.py has no external dependencies, so installation is trivial.
+I have not tested it on Python < 2.7.
 
 Usage
 ----------
