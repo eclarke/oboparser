@@ -108,6 +108,9 @@ class Obo:
                 self.conn.execute(INSERT_GRAPH_SQL,
                     (stanza['id'], relationship, target))
 
+    def _traverse_tree(self):
+        pass
+
     def get(self, _id):
         return self.stanzas.get(_id, None)
 
@@ -124,21 +127,27 @@ class Obo:
     def most_recent_common_ancestor(self, _id1, _id2, predicate):
         p1 = self.query(_id1, predicate, desc=False, expand=True)
         p2 = self.query(_id2, predicate, desc=False, expand=True)
+        for i, path in enumerate(p1):
+            pass
 
-    def query(self, _id, predicate, desc=True, expand=False):
+
+
+    def query(self, _id, predicate, desc=True, expand=False, named=False):
         """Returns all the descendants of a given predicate relationship, or
         if desc=False, returns ascendants. If expand=True, traverses up or
         down graph to terminal nodes."""
-        related = OrderedSet()
+        related = []
         sql = DESC_SQL if desc else ASC_SQL
         cur = self.conn.execute(sql, (predicate, _id))
         rset = cur.fetchall()
         cur.close()
         for relative in rset:
-            related.add(relative[0])
+            path = []
+            path.append((relative[0], self.stanzas[relative[0]]))
             if expand:
                 for sub in self.query(relative[0], predicate, desc, expand):
-                    related.add(sub)
+                    path.append((sub, self.stanzas[sub]))
+            related.append(path)
         return related
 
     def relationships(self):
