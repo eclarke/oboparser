@@ -6,7 +6,7 @@ over given predicate relationships.
 """
 import sqlite3
 from collections import defaultdict
-from orderedset import OrderedSet
+#from orderedset import OrderedSet
 
 
 GRAPH_SCHEMA_SQL = """
