@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 import obo
 import json
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
         with open(args.obo) as obof:
             ontology = obo.Obo(obof, dbname=args.db)
     elif args.remote_obo:
-        obof = urllib.urlopen(args.remote_obo)
+        obof = urllib.request.urlopen(args.remote_obo)
         ontology = obo.Obo(obof, dbname=args.db)
         obof.close()
     elif args.db:
@@ -40,7 +40,7 @@ def main():
     find = ontology.find_children if args.children else ontology.find_parents
     for term in args.terms:
         results[term] = find(term, expand=args.expand)
-    print json.dumps(results)
+    print(json.dumps(results))
 
 
 if __name__ == '__main__':

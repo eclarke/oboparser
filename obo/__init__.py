@@ -1,1 +1,1 @@
-from obo import *
+from .obo import *

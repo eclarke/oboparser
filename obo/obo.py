@@ -57,7 +57,7 @@ def parse_obo(obofile):
         if val:
             kvals[key].append(_strip_comments(val))
         elif 'id' in kvals:
-            for key, val in kvals.iteritems():
+            for key, val in kvals.items():
                 kvals[key] = val[0] if (len(val) == 1
                     and key not in MULTIVALUE) else val
             stanza = kvals
